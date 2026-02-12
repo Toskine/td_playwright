@@ -40,13 +40,14 @@ export class CheckoutPage {
 
   async fillShippingDetails() {
     await this.checkoutButton.click();
-    await this.firstName.fill(faker.person.firstName());
-    await this.lastName.fill(faker.person.lastName());
+    // On nettoie les noms et villes pour éviter les caractères spéciaux (accents, tirets) qui pourraient bloquer la validation
+    await this.firstName.fill(faker.person.firstName().replace(/[^a-zA-Z]/g, ''));
+    await this.lastName.fill(faker.person.lastName().replace(/[^a-zA-Z]/g, ''));
     await this.email.fill(faker.internet.email());
-    await this.phone.fill(faker.string.numeric(10));
+    await this.phone.fill(`06${faker.string.numeric(8)}`);
     await this.address.fill(faker.location.streetAddress());
-    await this.city.fill(faker.location.city());
-    await this.postalCode.fill(faker.location.zipCode());
+    await this.city.fill(faker.location.city().replace(/[^a-zA-Z ]/g, ''));
+    await this.postalCode.fill(faker.location.zipCode('#####'));
     await this.shippingSubmitButton.click();
   }
 

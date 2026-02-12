@@ -14,6 +14,6 @@ export class AuthPage {
     await this.page.locator('#signup-password').fill(pass);
     await this.page.locator('#signup-confirm').fill(pass);
     await this.page.getByTestId('signup-submit-button').click();
-    await this.page.getByRole('heading', { name: 'La technologie qui simplifie' }).isVisible();
+    await expect(this.page.getByRole('heading', { name: 'La technologie qui simplifie' })).toBeVisible();
   }
 }

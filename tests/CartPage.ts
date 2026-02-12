@@ -43,6 +43,7 @@ export class CartPage {
     await this.backLink.click();
 
     await this.page.getByTestId('nav-link-home').click();
+    await expect(this.page.getByRole('heading', { name: 'La technologie qui simplifie votre quotidien' })).toBeVisible();
     await this.produit7.click();
     await this.addToCartButton.click();
     

@@ -5,6 +5,7 @@ import { ContactPage } from '../ContactPage';
 import { CartPage } from '../CartPage';
 import { CatalogPage } from '../CatalogPage';
 import { NavigationPage } from '../NavigationPage';
+import { LoginPage } from '../Login';
 
 type MyFixtures = {
   authPage: AuthPage;
@@ -13,6 +14,7 @@ type MyFixtures = {
   cartPage: CartPage;
   catalogPage: CatalogPage;
   navigationPage: NavigationPage;
+  loginPage: LoginPage;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -34,6 +36,9 @@ export const test = base.extend<MyFixtures>({
   navigationPage: async ({ page }, use) => 
     {await use(new NavigationPage(page)); 
     },
+  loginPage: async ({ page }, use) => {
+    await use(new LoginPage(page));
+    }
 });
 
 export { expect } from '@playwright/test';
